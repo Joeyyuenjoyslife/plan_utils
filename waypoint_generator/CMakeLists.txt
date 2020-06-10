@@ -20,8 +20,10 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
   nav_msgs
+  geometry_msgs
 )
-catkin_package()
+catkin_package(
+  CATKIN_DEPENDS geometry_msgs)
 
 include_directories(include)
 include_directories(
@@ -31,5 +33,12 @@ include_directories(
 add_executable(waypoint_generator src/waypoint_generator.cpp)
 
 target_link_libraries(waypoint_generator
+   ${catkin_LIBRARIES}
+)
+
+
+add_executable(goal_pub src/goal_pub.cpp)
+
+target_link_libraries(goal_pub
    ${catkin_LIBRARIES}
 )
